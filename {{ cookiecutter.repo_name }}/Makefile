@@ -10,7 +10,6 @@ PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
 PYTHON_VERSION = {{ cookiecutter.python_version }}
-# ACTIVATE_ENV = $(shell which activate)
 
 ifeq (,$(shell which mamba))
 	HAS_MAMBA=False
@@ -26,6 +25,10 @@ endif
 reqs:
 	pip install -r requirements.txt
 	pip freeze > requirements.txt
+
+setup_requirements: reqs
+	pip install ipykernel  
+	python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 
 
 ## Install Python Dependencies
