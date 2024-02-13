@@ -2,6 +2,7 @@
 ACTIVATE_ENV=$(which activate)
 PROJECT_NAME={{cookiecutter.repo_name}}
 INSTALL_JUPYTER={{cookiecutter.use_jupyter_notebooks}} #true or false
+echo $INSTALL_JUPYTER
 
 # Run the create_environment Makefile command
 echo "Creating environment..."
