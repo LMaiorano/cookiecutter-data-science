@@ -15,14 +15,14 @@ echo ">>> Install requirements using pip"
 make reqs
 
 # Install Jupyter Kernel if necessary
-if [ "$INSTALL_JUPYTER" == "true" ]; then
+if [ "$INSTALL_JUPYTER" == "yes" ]; then
     echo ">>> Installing Jupyter Kernel"
     pip install ipykernel  
     python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 fi
 
 #initialize git
-echo "Initializing git..."
+echo ">>> Initializing git..."
 git init
 git add .
 git commit -m "Initial commit"
