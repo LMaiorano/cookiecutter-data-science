@@ -19,3 +19,5 @@ pip freeze > requirements.txt
 #initialize git
 echo "Initializing git..."
 git init
+git add .
+git commit -m "Initial commit"
