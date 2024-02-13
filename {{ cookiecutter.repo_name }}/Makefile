@@ -22,6 +22,12 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+# Install any new requirements and update the requirements.txt file
+reqs:
+	pip install -r requirements.txt
+	pip freeze > requirements.txt
+
+
 ## Install Python Dependencies
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel

@@ -10,11 +10,7 @@ make create_environment
 source $ACTIVATE_ENV $PROJECT_NAME
 
 echo ">>> Install requirements using pip"
-pip install -r requirements.txt
-
-# Pip freeze requirements
-echo ">>> Freezing requirements"
-pip freeze > requirements.txt
+make reqs
 
 #initialize git
 echo "Initializing git..."
