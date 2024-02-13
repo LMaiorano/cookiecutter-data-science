@@ -10,6 +10,7 @@ PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
 PYTHON_VERSION = {{ cookiecutter.python_version }}
+# ACTIVATE_ENV = $(shell which activate)
 
 ifeq (,$(shell which mamba))
 	HAS_MAMBA=False
@@ -65,13 +66,6 @@ else
 	mamba create --name $(PROJECT_NAME) python=2.7
 endif
 	@echo ">>> New mamba env created. Activate with:\nsource activate $(PROJECT_NAME)"
-	mamba activate $(PROJECT_NAME)
-	@echo ">>> Install requirements using pip"
-	pip install -r requirements.txt
-
-	# Pip freeze requirements
-	@echo ">>> Freezing requirements"
-	pip freeze > requirements.txt
 else
 	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
 	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
