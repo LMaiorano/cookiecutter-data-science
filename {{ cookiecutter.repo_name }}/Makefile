@@ -5,10 +5,10 @@
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
-PROFILE = default
-PROJECT_NAME = taipy_sandbox
-PYTHON_INTERPRETER = python3
+BUCKET = {{ cookiecutter.s3_bucket }}
+PROFILE = {{ cookiecutter.aws_profile }}
+PROJECT_NAME = {{ cookiecutter.repo_name }}
+PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
 
 ifeq (,$(shell which mamba))
 	HAS_MAMBA=False
