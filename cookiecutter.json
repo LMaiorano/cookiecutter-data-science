@@ -8,5 +8,5 @@
     "aws_profile": "default",
     "python_version": "3",
     "python_interpreter": "{% if cookiecutter.python_version[0] != '3' %} python {% else %} python3 {% endif %}",
-    "use_juypter_notebooks": false
+    "use_jupyter_notebooks": "no"
 }
