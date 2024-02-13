@@ -9,6 +9,7 @@ BUCKET = {{ cookiecutter.s3_bucket }}
 PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
+PYTHON_VERSION = {{ cookiecutter.python_version }}
 
 ifeq (,$(shell which mamba))
 	HAS_MAMBA=False
@@ -59,7 +60,7 @@ create_environment:
 ifeq (True,$(HAS_MAMBA))
 		@echo ">>> Detected mamba, creating mamba environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	mamba create --name $(PROJECT_NAME) python=3.11
+	mamba create --name $(PROJECT_NAME) python=$(PYTHON_VERSION)
 else
 	mamba create --name $(PROJECT_NAME) python=2.7
 endif
