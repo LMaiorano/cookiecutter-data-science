@@ -38,8 +38,11 @@ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/LMaiorano/cookiecutter-data-science
+Navigate to parent directory
 
+``` bash
+cookiecutter https://github.com/LMaiorano/cookiecutter-data-science
+```
 
 [![asciicast](https://asciinema.org/a/244658.svg)](https://asciinema.org/a/244658)
 
