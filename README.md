@@ -21,6 +21,7 @@ python3 -m pipx ensurepath
 
 
 **Install Cookiecutter**
+
 Reopen terminal
 ``` bash
 pipx install cookiecutter
