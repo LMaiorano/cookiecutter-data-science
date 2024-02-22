@@ -6,7 +6,7 @@ def run_unix_setup():
     if platform.system() in ['Linux', 'Darwin']:  # Darwin is for macOS
         subprocess.run(['./unix_setup.sh'], shell=True)
     else:
-        print("This system is not Unix-based.")
+        print("This system is not Unix-based. Please manually setup your environment.")
 
 
 def check_commands_installed(commands):
@@ -50,8 +50,10 @@ def python_setup_steps():
 
 
 
-# List of commands to check
-req_commands = ['source', 'make', 'python', 'pip', 'git']
+# # List of commands to check
+# req_commands = ['source', 'make', 'python', 'pip', 'git']
 
-if check_commands_installed(req_commands):
-    python_setup_steps()
+# if check_commands_installed(req_commands):
+#     python_setup_steps()
+    
+run_unix_setup()
