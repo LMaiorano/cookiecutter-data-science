@@ -11,8 +11,19 @@ _A logical, reasonably standardized, but flexible project structure for doing an
  - Python 2.7 or 3.5+
  - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
 
+***Recommended to use Pipx***
+
+``` bash 
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+```
+(You may need to change terminal directory to the "Python scripts" as shown in warning before running second command)
+
+
+**Install Cookiecutter**
+Reopen terminal
 ``` bash
-pip install cookiecutter
+pipx install cookiecutter
 ```
 
 or
