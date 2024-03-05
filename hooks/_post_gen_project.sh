@@ -21,6 +21,9 @@ if [ "$INSTALL_JUPYTER" == "yes" ]; then
     python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 fi
 
+# Once more
+make reqs
+
 #initialize git
 echo ">>> Initializing git..."
 git init

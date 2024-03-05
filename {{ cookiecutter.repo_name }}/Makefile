@@ -22,10 +22,6 @@ endif
 #################################################################################
 
 # Install any new requirements and update the requirements.txt file
-reqs:
-	pip install -r requirements.txt
-	pip freeze > requirements.txt
-
 setup_requirements: reqs
 	pip install ipykernel  
 	python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
