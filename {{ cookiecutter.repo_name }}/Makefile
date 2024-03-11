@@ -13,6 +13,10 @@ PYTHON_VERSION = {{ cookiecutter.python_version }}
 
 ifeq (,$(shell which mamba))
 	HAS_MAMBA=False
+	ifeq (,$(shell which conda))
+		HAS_CONDA=False
+	else
+		HAS_CONDA=True
 else
 	HAS_MAMBA=True
 endif
@@ -21,8 +25,25 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+# Activate the environment
+activate_env:
+ifeq (True,$(HAS_MAMBA))
+	@echo ">>> Detected mamba, activating mamba environment."
+	conda activate $(PROJECT_NAME)
+else ifeq (True,$(HAS_CONDA))
+	@echo ">>> Detected conda, activating conda environment."
+	conda activate $(PROJECT_NAME)
+else
+	@echo ">>> Activating virtualenv environment."
+	@bash -c "source `which virtualenvwrapper.sh`;workon $(PROJECT_NAME)"
+
+# Pip install requirements
+requirements:
+	pip install -r requirements.txt
+
+
 # Install any new requirements and update the requirements.txt file
-setup_requirements: reqs
+setup_ipython: requirements
 	pip install ipykernel  
 	python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 
@@ -65,10 +86,10 @@ endif
 create_environment:
 ifeq (True,$(HAS_MAMBA))
 		@echo ">>> Detected mamba, creating mamba environment."
-ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	mamba create --name $(PROJECT_NAME) python=$(PYTHON_VERSION)
-else
-	mamba create --name $(PROJECT_NAME) python=2.7
+	ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
+		mamba create --name $(PROJECT_NAME) python=$(PYTHON_VERSION)
+	else
+		mamba create --name $(PROJECT_NAME) python=2.7
 endif
 	@echo ">>> New mamba env created. Activate with:\nsource activate $(PROJECT_NAME)"
 else

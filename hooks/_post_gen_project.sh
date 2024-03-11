@@ -9,7 +9,7 @@ echo "Creating environment..."
 make create_environment
 
 # activate the environment
-source $ACTIVATE_ENV $PROJECT_NAME
+make activate_environment
 # exit only if previous command successful
 if [ $? -ne 0 ]; then
     echo "Error: Failed to activate environment"
@@ -17,8 +17,9 @@ if [ $? -ne 0 ]; then
 fi
 
 
+# Install requirements
 echo ">>> Install requirements using pip"
-pip install -r requirements.txt
+make requirements
 
 # Install Jupyter Kernel if necessary
 if [ "$INSTALL_JUPYTER" == "yes" ]; then
