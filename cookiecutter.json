@@ -3,10 +3,11 @@
     "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "author_name": "Your name (or your organization/company/team)",
     "description": "A short description of the project.",
-    "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
+    "open_source_license": ["No license file", "MIT", "BSD-3-Clause"],
     "s3_bucket": "[OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')",
     "aws_profile": "default",
-    "python_version": "Latest==PRE-PROMPT-LATEST, Default==PRE-PROMPT-RECOMMENDED",
+    "taipy_development": true,
+    "python_version": "{% if cookiecutter.taipy_development %}PRE-PROMPT-TAIPY{% else %}PRE-PROMPT-LATEST{% endif %}",
     "__python_interpreter": "{% if cookiecutter.python_version[0] != '3' %}python{% else %}python3{% endif %}",
     "use_jupyter_notebooks": "no"
 }

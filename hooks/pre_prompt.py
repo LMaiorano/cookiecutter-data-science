@@ -7,10 +7,10 @@ import requests
 def latest_python_versions():
     result = requests.get("https://endoflife.date/api/python.json")
     parsed_result = result.json()
-    recommended_v = parsed_result[2]["latest"] # two versions back
+    taipy_v = parsed_result[1]["latest"]
     latest_v =  parsed_result[0]["latest"]
     
-    choices = [latest_v, recommended_v]
+    choices = [latest_v, taipy_v]
     
     # print(f"Possible Python versions: {choices}")
 
@@ -47,12 +47,17 @@ def create_cookiecutter_json():
         data = file.readlines()
     
     # find line with python_version
-    pv_idx = [i for i, line in enumerate(data) if "python_version" in line][0]
+    rec_idx = [i for i, line in enumerate(data) if "PRE-PROMPT-TAIPY" in line]
+    lat_idx = [i for i, line in enumerate(data) if "PRE-PROMPT-LATEST" in line]
     
     # replace PRE-PROMPT-LATEST with version_choices[0]
-    data[pv_idx] = data[pv_idx].replace("PRE-PROMPT-LATEST", version_choices[0])
-    data[pv_idx] = data[pv_idx].replace("PRE-PROMPT-RECOMMENDED", version_choices[1])
+    for i in rec_idx:
+        data[i] = data[i].replace("PRE-PROMPT-TAIPY", version_choices[1])
     
+    for i in lat_idx:
+        data[i] = data[i].replace("PRE-PROMPT-LATEST", version_choices[0])
+    
+
     # Write the cookiecutter.json file
     with open('cookiecutter.json', 'w') as file:
         file.writelines(data)

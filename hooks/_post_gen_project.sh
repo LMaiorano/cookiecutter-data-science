@@ -17,7 +17,10 @@ echo "Creating environment..."
 make create_environment
 
 # activate the environment
-make activate_env
+# First line is absolutely necessary. Do not remove!! conda activate is buggy and this fixes it
+source $(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh # Or path to where your conda is
+conda activate $PROJECT_NAME
+
 # exit only if previous command successful
 if [ $? -ne 0 ]; then
     echo "Error: Failed to activate environment"

@@ -28,14 +28,11 @@ endif
 
 # Activate the environment
 activate_env:
-ifeq (True,$(HAS_MAMBA))
-	@echo ">>> Detected mamba, activating mamba environment."
-	conda activate $(PROJECT_NAME)
+ifeq (True,$(HAS_MAMBA)) 
+	source $(shell mamba env list | grep $(PROJECT_NAME) | awk '{print $$2}')/bin/activate
 else ifeq (True,$(HAS_CONDA))
-	@echo ">>> Detected conda, activating conda environment."
-	conda activate $(PROJECT_NAME)
+	@conda activate $(PROJECT_NAME)
 else
-	@echo ">>> Activating virtualenv environment."
 	@bash -c "source `which virtualenvwrapper.sh`;workon $(PROJECT_NAME)"
 endif
 

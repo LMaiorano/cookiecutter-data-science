@@ -1,6 +1,6 @@
 import sys
 
-REQUIRED_PYTHON = "{{ cookiecutter.python_interpreter }}"
+REQUIRED_PYTHON = "{{ cookiecutter.__python_interpreter }}"
 
 
 def main():
