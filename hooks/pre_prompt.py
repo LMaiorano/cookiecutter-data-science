@@ -7,7 +7,7 @@ import requests
 def latest_python_versions():
     result = requests.get("https://endoflife.date/api/python.json")
     parsed_result = result.json()
-    recommended_v = ''.join(parsed_result[2]["latest"].split('.')[:2]) # two versions back
+    recommended_v = parsed_result[2]["latest"] # two versions back
     latest_v =  parsed_result[0]["latest"]
     
     choices = [recommended_v, latest_v]
