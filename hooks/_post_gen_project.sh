@@ -4,6 +4,14 @@ PROJECT_NAME={{cookiecutter.repo_name}}
 INSTALL_JUPYTER={{cookiecutter.use_jupyter_notebooks}} #true or false
 echo $INSTALL_JUPYTER
 
+# Abort if directory already exists
+if [ -d "$PROJECT_NAME" ]; then
+    echo "Error: Directory $PROJECT_NAME already exists"
+    exit 1
+fi
+
+
+
 # Run the create_environment Makefile command
 echo "Creating environment..."
 make create_environment
