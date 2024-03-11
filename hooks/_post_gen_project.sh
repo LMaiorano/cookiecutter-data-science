@@ -9,7 +9,7 @@ echo "Creating environment..."
 make create_environment
 
 # activate the environment
-make activate_environment
+make activate_env
 # exit only if previous command successful
 if [ $? -ne 0 ]; then
     echo "Error: Failed to activate environment"

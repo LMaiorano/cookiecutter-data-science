@@ -50,10 +50,10 @@ setup_ipython: requirements
 	python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 
 
-## Install Python Dependencies
-requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+# ## Install Python Dependencies
+# requirements: test_environment
+# 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
+# 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Make Dataset
 data: requirements
