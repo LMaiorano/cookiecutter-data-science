@@ -10,7 +10,7 @@ def latest_python_versions():
     recommended_v = parsed_result[2]["latest"] # two versions back
     latest_v =  parsed_result[0]["latest"]
     
-    choices = [recommended_v, latest_v]
+    choices = [latest_v, recommended_v]
     
     # print(f"Possible Python versions: {choices}")
 
