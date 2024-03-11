@@ -1,9 +1,4 @@
-import requests
-result = requests.get("https://endoflife.date/api/python.json")
-parsed_result = result.json()
-version_string =  parsed_result[0]["latest"]
 
-print(f"Latest Python version: {version_string}")
 
 
 
