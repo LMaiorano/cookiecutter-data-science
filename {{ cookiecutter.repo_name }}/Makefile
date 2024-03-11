@@ -17,6 +17,7 @@ ifeq (,$(shell which mamba))
 		HAS_CONDA=False
 	else
 		HAS_CONDA=True
+	endif
 else
 	HAS_MAMBA=True
 endif
@@ -90,7 +91,7 @@ ifeq (True,$(HAS_MAMBA))
 		mamba create --name $(PROJECT_NAME) python=$(PYTHON_VERSION)
 	else
 		mamba create --name $(PROJECT_NAME) python=2.7
-endif
+	endif
 	@echo ">>> New mamba env created. Activate with:\nsource activate $(PROJECT_NAME)"
 else
 	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
