@@ -1,0 +1,62 @@
+# Config of pre-commit hooks, such as code formatting using black
+# See https://pre-commit.com/ for installation steps
+# Install / apply changes to this file with: pre-commit install --hook-type pre-commit --hook-type pre-push
+
+repos:
+  - repo: local
+    hooks:
+    -   id: pip-freeze
+        name: Pip Freeze (update requirements.txt)
+        entry: bash -c 'pip freeze > requirements.txt'
+        language: system
+        files: '.*\.py$'
+        always_run: true
+        stages: [commit]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: check-yaml
+        args: [--unsafe]        # Necessary for python-specific tags (ie !!python/tuple [0, 3])
+      - id: check-toml
+      - id: detect-private-key
+      - id: check-added-large-files
+        args: ['--maxkb=50000']
+
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+    - id: black
+      name: Black Formatter
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+    - id: flake8
+      additional_dependencies: [Flake8-pyproject]
+      fail_fast: true  # Stops commit here, prevents pylint now (since commit will be rerun anyway)
+  - repo: local
+    hooks:
+      - id: pylint
+        name: PyLint
+        entry: pylint
+        language: system
+        types: [python]
+        stages: [commit]
+        args: [
+          # "-sn", # Don't display the score
+          "-rn", # Only display messages
+          "--rcfile=pyproject.toml",
+          "--fail-under=8"
+          ]
+
+      - id: pytest
+        name: PyTest
+        entry: pytest ./tests
+        language: system
+        types: [python]
+        stages: [push]
+        always_run: true
+        pass_filenames: false
