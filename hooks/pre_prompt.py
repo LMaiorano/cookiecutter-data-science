@@ -21,7 +21,7 @@ def latest_python_version():
 def select_platform_post_hook():
     if platform.system() in ['Linux', 'Darwin']:  # Darwin is for macOS
         os.rename('hooks/_post_gen_project.sh', 'hooks/post_gen_project.sh')
-        # TODO: Check that make command is available
+
         if shutil.which('make') is None:
             print("'make' command is not available")
             print("Please install 'make' before continuing")
@@ -36,5 +36,5 @@ def select_platform_post_hook():
     
 select_platform_post_hook()
 
+latest_python_version()
 
-#  TODO: Add pre-commit hooks that run black, isort, and flake8, and freeze the requirements.txt file
