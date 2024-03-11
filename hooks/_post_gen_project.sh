@@ -12,7 +12,7 @@ make create_environment
 source $ACTIVATE_ENV $PROJECT_NAME
 
 echo ">>> Install requirements using pip"
-make reqs
+pip install -r requirements.txt
 
 # Install Jupyter Kernel if necessary
 if [ "$INSTALL_JUPYTER" == "yes" ]; then
@@ -21,11 +21,14 @@ if [ "$INSTALL_JUPYTER" == "yes" ]; then
     python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 fi
 
-# Once more
-make reqs
 
 #initialize git
 echo ">>> Initializing git..."
 git init
 git add .
 git commit -m "Initial commit"
+
+
+# Setup pre-commit hooks
+echo ">>> Setting up pre-commit hooks"
+pre-commit install --hook-type pre-commit --hook-type pre-push

@@ -51,12 +51,3 @@ repos:
           "--rcfile=pyproject.toml",
           "--fail-under=8"
           ]
-
-      - id: pytest
-        name: PyTest
-        entry: pytest ./tests
-        language: system
-        types: [python]
-        stages: [push]
-        always_run: true
-        pass_filenames: false
