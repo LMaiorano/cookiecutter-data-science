@@ -10,6 +10,12 @@ make create_environment
 
 # activate the environment
 source $ACTIVATE_ENV $PROJECT_NAME
+# exit only if previous command successful
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to activate environment"
+    exit 1
+fi
+
 
 echo ">>> Install requirements using pip"
 pip install -r requirements.txt
@@ -20,6 +26,8 @@ if [ "$INSTALL_JUPYTER" == "yes" ]; then
     pip install ipykernel  
     python -m ipykernel install --user --display-name ${PWD} --name ${PWD##*/}
 fi
+
+# 
 
 
 #initialize git
