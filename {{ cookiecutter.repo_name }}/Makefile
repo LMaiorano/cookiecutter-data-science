@@ -37,6 +37,7 @@ else ifeq (True,$(HAS_CONDA))
 else
 	@echo ">>> Activating virtualenv environment."
 	@bash -c "source `which virtualenvwrapper.sh`;workon $(PROJECT_NAME)"
+endif
 
 # Pip install requirements
 requirements:
